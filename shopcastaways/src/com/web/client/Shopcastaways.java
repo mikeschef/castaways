@@ -11,7 +11,10 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -41,17 +44,41 @@ public class Shopcastaways implements EntryPoint {
 	public void onModuleLoad() {
 		final Button sendButton = new Button("Sign in");
 		final TextBox nameField = new TextBox();
-		nameField.setText("GWT User");
+		nameField.setText("username");
 		final Label errorLabel = new Label();
 
 		// We can add style names to widgets
 		sendButton.addStyleName("sendButton");
 
+	    // Grids must be sized explicitly, though they can be resized later.
+	    Grid g = new Grid(5, 5);
+
+	    // Put some values in the grid cells.
+	    for (int row = 0; row < 5; ++row) {
+	      for (int col = 0; col < 5; ++col)
+	    	  g.setHTML(row, col,
+					"<div class='productContainer'>" +
+						"<span>Sweater</span>" +
+						"<br/><img src='../images/castaways_logo.jpg'" + 
+						"<br/><br/><br/><input type='button' value='Add to Cart'></input>" +
+					"</div>"				
+				);
+	      
+	      
+	    }		
+		
+		g.setCellPadding(10);
+		g.setWidth("100%");
+		HorizontalPanel hp = new HorizontalPanel();
+		hp.setWidth("100%");
+		hp.add(g);
+		hp.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
+		
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
 		RootPanel.get("nameFieldContainer").add(nameField);
 		RootPanel.get("sendButtonContainer").add(sendButton);
-		RootPanel.get("errorLabelContainer").add(errorLabel);
+		RootPanel.get("contentContainer").add(hp);
 
 		// Focus the cursor on the name field when the app loads
 		nameField.setFocus(true);
