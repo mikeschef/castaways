@@ -11,7 +11,6 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -48,36 +47,27 @@ public class Shopcastaways implements EntryPoint {
 		final Label errorLabel = new Label();
 
 		// We can add style names to widgets
-		sendButton.addStyleName("sendButton");
+		sendButton.addStyleName("btn");
 
 	    // Grids must be sized explicitly, though they can be resized later.
 	    Grid g = new Grid(5, 5);
 
 	    // Put some values in the grid cells.
-	    for (int row = 0; row < 5; ++row) {
-	      for (int col = 0; col < 5; ++col)
+	    for (int row = 0; row < 3; ++row) {
+	      for (int col = 0; col < 3; ++col)
 	    	  g.setHTML(row, col,
 					"<div class='productContainer'>" +
 						"<span>Sweater</span>" +
 						"<br/><img src='../images/castaways_logo.jpg'" + 
-						"<br/><br/><br/><input type='button' value='Add to Cart'></input>" +
+						"<br/><br/><br/><input type='button' class='btn' value='Add to Cart'></input>" +
 					"</div>"				
 				);
-	      
-	      
 	    }		
 		
 		g.setCellPadding(10);
-		g.setWidth("100%");
 		HorizontalPanel hp = new HorizontalPanel();
-		hp.setWidth("100%");
 		hp.add(g);
-		hp.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
 		
-		// Add the nameField and sendButton to the RootPanel
-		// Use RootPanel.get() to get the entire body element
-		RootPanel.get("nameFieldContainer").add(nameField);
-		RootPanel.get("sendButtonContainer").add(sendButton);
 		RootPanel.get("contentContainer").add(hp);
 
 		// Focus the cursor on the name field when the app loads
