@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -41,13 +42,20 @@ public class Shopcastaways implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		final Button sendButton = new Button("Sign in");
-		final TextBox nameField = new TextBox();
-		nameField.setText("username");
+		final Button btnSignIn = new Button("Sign in");
+		final TextBox tbUserName = new TextBox();
+		final PasswordTextBox ptbPassword = new PasswordTextBox();
+		
+		tbUserName.setText("username");
+		tbUserName.setStyleName("input-small");
+
+		ptbPassword.setText("password");
+		ptbPassword.setStyleName("input-small");
+		
 		final Label errorLabel = new Label();
 
 		// We can add style names to widgets
-		sendButton.addStyleName("btn");
+		btnSignIn.addStyleName("btn");
 
 	    // Grids must be sized explicitly, though they can be resized later.
 	    Grid g = new Grid(5, 5);
@@ -67,12 +75,9 @@ public class Shopcastaways implements EntryPoint {
 		g.setCellPadding(10);
 		HorizontalPanel hp = new HorizontalPanel();
 		hp.add(g);
-		
+		RootPanel.get("userNameContainer").add(tbUserName);
+		RootPanel.get("passwordContainer").add(ptbPassword);
 		RootPanel.get("contentContainer").add(hp);
-
-		// Focus the cursor on the name field when the app loads
-		nameField.setFocus(true);
-		nameField.selectAll();
 
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();
@@ -97,8 +102,8 @@ public class Shopcastaways implements EntryPoint {
 		closeButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				dialogBox.hide();
-				sendButton.setEnabled(true);
-				sendButton.setFocus(true);
+				btnSignIn.setEnabled(true);
+				btnSignIn.setFocus(true);
 			}
 		});
 
@@ -126,14 +131,14 @@ public class Shopcastaways implements EntryPoint {
 			private void sendNameToServer() {
 				// First, we validate the input.
 				errorLabel.setText("");
-				String textToServer = nameField.getText();
+				String textToServer = tbUserName.getText();
 				if (!FieldVerifier.isValidName(textToServer)) {
 					errorLabel.setText("Please enter at least four characters");
 					return;
 				}
 
 				// Then, we send the input to the server.
-				sendButton.setEnabled(false);
+				btnSignIn.setEnabled(false);
 				textToServerLabel.setText(textToServer);
 				serverResponseLabel.setText("");
 				greetingService.greetServer(textToServer,
@@ -163,7 +168,7 @@ public class Shopcastaways implements EntryPoint {
 
 		// Add a handler to send the name to the server
 		MyHandler handler = new MyHandler();
-		sendButton.addClickHandler(handler);
-		nameField.addKeyUpHandler(handler);
+		btnSignIn.addClickHandler(handler);
+		tbUserName.addKeyUpHandler(handler);
 	}
 }
