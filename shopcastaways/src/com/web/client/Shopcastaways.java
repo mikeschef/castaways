@@ -48,7 +48,7 @@ public class Shopcastaways implements EntryPoint {
 		
 		tbUserName.setText("username");
 		tbUserName.setStyleName("input-small");
-
+		
 		ptbPassword.setText("password");
 		ptbPassword.setStyleName("input-small");
 		
@@ -77,6 +77,7 @@ public class Shopcastaways implements EntryPoint {
 		hp.add(g);
 		RootPanel.get("userNameContainer").add(tbUserName);
 		RootPanel.get("passwordContainer").add(ptbPassword);
+		RootPanel.get("sendButton").add(btnSignIn);
 		RootPanel.get("contentContainer").add(hp);
 
 		// Create the popup dialog box

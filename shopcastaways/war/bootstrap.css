@@ -11,6 +11,7 @@
 /* Reset.less
  * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here	that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
  * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+*{ margin:0; padding:0; }
 html, body {
   margin: 0;
   padding: 0;
@@ -166,6 +167,7 @@ input[type="search"] {
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
+
 textarea {
   overflow: auto;
   vertical-align: top;
@@ -784,6 +786,7 @@ input.small,
 textarea.small,
 select.small {
   width: 90px;
+  height: 28px;
 }
 .input-medium,
 input.medium,
@@ -1349,6 +1352,11 @@ table .headerSortUp.purple, table .headerSortDown.purple {
   -moz-opacity: 1;
   opacity: 1;
 }
+
+.logindiv {
+  float: right;
+}
+
 .topbar form.pull-right {
   float: right;
 }
@@ -1375,6 +1383,7 @@ table .headerSortUp.purple, table .headerSortDown.purple {
   -o-transition: none;
   transition: none;
 }
+
 .topbar input:-moz-placeholder {
   color: #e6e6e6;
 }
@@ -2468,3 +2477,4 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
+
